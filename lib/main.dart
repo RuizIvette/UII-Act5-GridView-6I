@@ -1,122 +1,163 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
-  runApp(const MyApp());
+  runApp(JugueteriaIvette());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class JugueteriaIvette extends StatelessWidget {
+  const JugueteriaIvette({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Juguetería Ivette',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: Colors.purple,
+        // Paleta basada en morados y colores atractivos
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple,
+          primary: Colors.purple,
+          secondary: Colors.pinkAccent,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF5F0FF), // Fondo lila muy suave
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const CatalogoPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class CatalogoPage extends StatelessWidget {
+  const CatalogoPage({super.key});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  // Lista de URLs corregidas
+  final List<String> imagenes = const [
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete1.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete2.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete3.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete4.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete5.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete6.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete7.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete8.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete9.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete10.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete11.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete12.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/juguete13.jfif',
+    'https://raw.githubusercontent.com/RuizIvette/Juguetes/refs/heads/main/Juguete14.jfif',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        title: const Text(
+          'Juguetería Ivette 🧸',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
+        centerTitle: true,
+        backgroundColor: Colors.purple,
+        elevation: 4,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: GridView.builder(
+        padding: const EdgeInsets.all(10),
+        // 2 columnas por 7 filas (14 items)
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          // Ajuste de aspecto para que la tarjeta sea vertical y quepa en móviles
+          childAspectRatio: 0.72, 
+        ),
+        itemCount: imagenes.length,
+        itemBuilder: (context, index) {
+          return JugueteCard(url: imagenes[index], index: index + 1);
+        },
+      ),
+    );
+  }
+}
+
+class JugueteCard extends StatelessWidget {
+  final String url;
+  final int index;
+
+  const JugueteCard({super.key, required this.url, required this.index});
+
+  @override
+  Widget build(BuildContext context) {
+    // Generación de calificación aleatoria
+    final int rating = Random().nextInt(5) + 1;
+
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Imagen del juguete (Tamaño adaptado para móvil)
+          Expanded(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+              child: Image.network(
+                url,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                // Placeholder mientras carga o si falla
+                errorBuilder: (context, error, stackTrace) => Container(
+                  color: Colors.purple[50],
+                  child: const Icon(Icons.toys, color: Colors.purple),
+                ),
+              ),
+            ),
+          ),
+          
+          // Contenedor de las 3 filas de información
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Fila 1: Título
+                Text(
+                  'Juguete Divertido #$index',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: Colors.purple,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                
+                // Fila 2: Subtítulo
+                const Text(
+                  'Edición Especial',
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.black54,
+                  ),
+                ),
+                
+                const SizedBox(height: 4),
+                
+                // Fila 3: Calificación con estrellas
+                Row(
+                  children: List.generate(5, (starIndex) {
+                    return Icon(
+                      starIndex < rating ? Icons.star : Icons.star_border,
+                      size: 16,
+                      color: Colors.amber,
+                    );
+                  }),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
